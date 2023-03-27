@@ -3,7 +3,7 @@ package ex5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Caisse {
+public class Caisse extends ArrayList<Item>{
 
 	private String nom;
 	private List<Item> items;
@@ -44,5 +44,21 @@ public class Caisse {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
-	
+	@Override
+	public boolean add(Item item) {
+		boolean verificationAjout = false;
+		if (item.getPoids() < 5) {
+			super.add(item);
+			verificationAjout = true;
+		}
+		if (item.getPoids() >= 5 && item.getPoids() <= 20) {
+			super.add(item);
+			verificationAjout = true;
+		}
+		if (item.getPoids() >= 20) {
+			super.add(item);
+			verificationAjout = true;
+		}
+		return verificationAjout;
+	}
 }
