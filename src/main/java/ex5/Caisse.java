@@ -3,18 +3,35 @@ package ex5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Caisse extends ArrayList<Item>{
+public class Caisse{
 
 	private String nom;
 	private List<Item> items;
+	/**
+	 * Ajout variables capacite de la caisse
+	 */
+	private int capaciteMin;
+	private int capaciteMax;
 
 	/** Constructeur
 	 * @param nom
 	 */
-	public Caisse(String nom) {
+	public Caisse(String nom, int capaciteMin, int capaciteMax) {
 		super();
 		this.nom = nom;
 		this.items = new ArrayList<>();
+		this.capaciteMin = capaciteMin;
+		this.capaciteMax = capaciteMax;
+	}
+	//Méthode
+
+	public boolean isPoidsValid(Item item)
+	{
+		if(item.getPoids() >= capaciteMin && item.getPoids() <= capaciteMax)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/** Getter pour l'attribut nom
@@ -43,22 +60,5 @@ public class Caisse extends ArrayList<Item>{
 	 */
 	public void setItems(List<Item> items) {
 		this.items = items;
-	}
-	@Override
-	public boolean add(Item item) {
-		boolean verificationAjout = false;
-		if (item.getPoids() < 5) {
-			super.add(item);
-			verificationAjout = true;
-		}
-		if (item.getPoids() >= 5 && item.getPoids() <= 20) {
-			super.add(item);
-			verificationAjout = true;
-		}
-		if (item.getPoids() >= 20) {
-			super.add(item);
-			verificationAjout = true;
-		}
-		return verificationAjout;
 	}
 }

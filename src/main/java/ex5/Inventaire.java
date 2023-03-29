@@ -9,9 +9,9 @@ public class Inventaire {
 
 	public Inventaire() {
 		caisses = new ArrayList<>();
-		caisses.add(new Caisse("Petits objets"));
-		caisses.add(new Caisse("Moyens objets"));
-		caisses.add(new Caisse("Grands objets"));
+		caisses.add(new Caisse("Petits objets",1,5));
+		caisses.add(new Caisse("Moyens objets",5,16));
+		caisses.add(new Caisse("Grands objets",20,30));
 	}
 
 	/**
@@ -22,7 +22,10 @@ public class Inventaire {
 
 		for ( Caisse listeCaisse : caisses)
 		{
-			listeCaisse.getItems().add(item);
+			if (listeCaisse.isPoidsValid(item))
+			{
+				listeCaisse.getItems().add(item);
+			}
 		}
 	}
 
